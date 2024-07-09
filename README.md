@@ -15,6 +15,12 @@ Install Ansible FreeIPA collection from Ansible Galaxy:
 ansible-galaxy collection install freeipa.ansible_freeipa
 ```
 
+Configure `/etc/hosts` on each server:
+```
+ansible-playbook -i hosts.ini configure-hosts.yml
+```
+
+
 Install FreeIPA:
 ```
 ansible-playbook -i hosts.ini $HOME/.ansible/collections/ansible_collections/freeipa/ansible_freeipa/playbooks/install-cluster.yml
