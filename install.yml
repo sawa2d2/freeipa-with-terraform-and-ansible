@@ -1,0 +1,15 @@
+---
+- name: Configure SSH and hosts
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Add hosts to /etc/hosts
+      lineinfile:
+        path: /etc/hosts 
+        regexp: "{{ hostvars[item].ansible_host }}"
+        line: "{{ hostvars[item].ansible_host }} {{ item.split('.')[0] }} {{ item.split('.')[0] }}.example.com"
+        state: present
+      loop: "{{ ansible_play_hosts }}"
+      become: true 
+
+- import_playbook: /runner/requirements_collections/ansible_collections/freeipa/ansible_freeipa/playbooks/install-cluster.yml
