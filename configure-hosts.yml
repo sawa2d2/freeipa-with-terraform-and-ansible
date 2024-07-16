@@ -6,8 +6,8 @@
     - name: Add hosts to /etc/hosts
       lineinfile:
         path: /etc/hosts 
-        regexp: "{{ hostvars[item].ansible_default_ipv4.address }}"
-        line: "{{ hostvars[item].ansible_default_ipv4.address }} {{ item }} {{ item.split('.')[0] }}"
+        regexp: "{{ hostvars[item].ansible_host }}"
+        line: "{{ hostvars[item].ansible_host }} {{ item.split('.')[0] }}"
         state: present
       loop: "{{ ansible_play_hosts }}"
       become: true 
