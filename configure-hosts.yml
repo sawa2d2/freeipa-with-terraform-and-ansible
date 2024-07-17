@@ -12,3 +12,6 @@
       loop: "{{ ansible_play_hosts }}"
       become: true 
 
+    - name: Fix hostname
+      command: "hostnamectl set-hostname {{ inventory_hostname.split('.')[0].split('-')[-1] }}.example.com"
+
