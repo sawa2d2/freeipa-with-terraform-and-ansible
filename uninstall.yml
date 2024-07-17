@@ -1,0 +1,2 @@
+---
+- import_playbook: /runner/requirements_collections/ansible_collections/freeipa/ansible_freeipa/playbooks/uninstall-cluster.yml
