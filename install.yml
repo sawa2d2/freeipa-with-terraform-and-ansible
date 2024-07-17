@@ -7,12 +7,12 @@
       lineinfile:
         path: /etc/hosts 
         regexp: "{{ hostvars[item].ansible_host }}"
-        line: "{{ hostvars[item].ansible_host }} {{ item.split('.')[0].split('-')[-1] }}.example.com {{ item.split('.')[0].split('-')[-1] }}"
+        line: "{{ hostvars[item].ansible_host }} {{ item.split('.')[0].split('-')[-1] }}.default.svc.cluster.local {{ item.split('.')[0].split('-')[-1] }}"
         state: present
       loop: "{{ ansible_play_hosts }}"
       become: true 
 
     - name: Fix hostname
-      command: "hostnamectl set-hostname {{ inventory_hostname.split('.')[0].split('-')[-1] }}.example.com"
+      command: "hostnamectl set-hostname {{ inventory_hostname.split('.')[0].split('-')[-1] }}.default.svc.cluster.local"
 
 - import_playbook: /runner/requirements_collections/ansible_collections/freeipa/ansible_freeipa/playbooks/install-cluster.yml
