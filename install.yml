@@ -12,4 +12,7 @@
       loop: "{{ ansible_play_hosts }}"
       become: true 
 
+    - name: Fix hostname
+      command: "hostnamectl set-hostname {{ inventory_hostname.split('.')[0].split('-')[-1] }}.example.com"
+
 - import_playbook: /runner/requirements_collections/ansible_collections/freeipa/ansible_freeipa/playbooks/install-cluster.yml
