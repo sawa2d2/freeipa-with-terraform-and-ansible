@@ -13,6 +13,6 @@
       become: true 
 
     - name: Fix hostname
-      command: "hostnamectl set-hostname {{ item }}"
+      command: "hostnamectl set-hostname {{ inventory_hostname }}"
 
 - import_playbook: /runner/requirements_collections/ansible_collections/freeipa/ansible_freeipa/playbooks/install-cluster.yml
