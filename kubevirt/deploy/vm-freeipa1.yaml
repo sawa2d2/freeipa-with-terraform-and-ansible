@@ -2,12 +2,12 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   creationTimestamp: null
-  name: vm-v4gqw
+  name: freeipa1
 spec:
   dataVolumeTemplates:
     - metadata:
         creationTimestamp: null
-        name: vm-v4gqw-pvc-rocky9
+        name: freeipa1-pvc-rocky9
       spec:
         source:
           pvc:
@@ -33,14 +33,18 @@ spec:
       terminationGracePeriodSeconds: 180
       volumes:
         - dataVolume:
-            name: vm-v4gqw-pvc-rocky9
-          name: vm-v4gqw-pvc-rocky9
+            name: freeipa1-pvc-rocky9
+          name: freeipa1-pvc-rocky9
         - cloudInitNoCloud:
-            userDataBase64: I2Nsb3VkLWNvbmZpZwp1c2VyczoKICAtIG5hbWU6IHJvb3QKICAgIHNzaC1hdXRob3JpemVkLWtleXM6CiAgICAgIC0gPFNTSF9LRVk+Cg==
+            userDataBase64: |-
+              I2Nsb3VkLWNvbmZpZwp1c2VyczoKICAtIG5hbWU6IHJvb3QKICAgIHNzaC1hdXRob3JpemVkLWtl
+              eXM6CiAgICAgIC0gPFNTSF9LRVk+Cg==
           name: cloudinitdisk
       nodeSelector:
         kubernetes.io/hostname: master0
       networks:
         - name: eth0
           pod: {}
+  labels:
+    app: freeipa
 status: {}
